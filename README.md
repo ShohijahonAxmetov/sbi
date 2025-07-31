@@ -34,6 +34,10 @@ php artisan migrate --seed
 php artisan storage:link
 ```
 Для тестирования измените данные БД в файле phpunit.xml
+Для запуска тестов:
+```bash
+php artisan test
+```
 
 Для запуска очередей используйте команду
 ```bash
