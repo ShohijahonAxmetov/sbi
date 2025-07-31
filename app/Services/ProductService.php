@@ -2,13 +2,15 @@
 
 namespace App\Services;
 
-use App\Repositories\ProductRepository;
+use App\Jobs\ExportProducts;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Repositories\Interfaces\ProductRepositoryInterface;
 
 class ProductService
 {
-	private ProductRepository $productRepository;
+	private ProductRepositoryInterface $productRepository;
 
-	public function __construct(ProductRepository $productRepository)
+	public function __construct(ProductRepositoryInterface $productRepository)
 	{
 		$this->productRepository = $productRepository;
 	}
@@ -39,5 +41,12 @@ class ProductService
 	{
 		if (!$this->productRepository->find($id)) return abort(404);
 		return $this->productRepository->delete($id);
+	}
+
+	public function export()
+	{
+		ExportProducts::dispatch();
+		return;
+		// return Excel::download(new ProductsExport, 'products.xlsx');
 	}
 }

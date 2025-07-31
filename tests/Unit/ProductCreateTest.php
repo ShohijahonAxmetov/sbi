@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class ProductCreateTest extends TestCase
 {
@@ -13,24 +13,36 @@ class ProductCreateTest extends TestCase
      */
     public function test_product_create(): void
     {
-    	$productRepository = app(\App\Repositories\Interfaces\ProductRepositoryInterface::class);
+    	$data = [
+            'name' => 'Test Product',
+            'price' => '150000.00',
+            'barcode' => '1234560514112',
+            'category_id' => 2
+        ];
 
-    	// $data = [
-     //        'name' => 'Test Product',
-     //        'price' => '150000.00',
-     //        'barcode' => '1234560514112',
-     //        'category_id' => 555
-     //    ];
+        $service = app(\App\Services\ProductService::class);
 
-     //    $product = $productRepository->create($data);
+        $product = $service->create($data);
 
-     //    $this->assertDatabaseHas('products', [
-     //        'name' => 'Test Product',
-     //        'price' => '150000.00',
-     //        'barcode' => '1234560514112',
-     //        'category_id' => 555
-     //    ]);
+        $data['id'] = $product->id;
 
-     //    $this->assertInstanceOf(\App\Models\Product::class, $product);
+        $this->assertDatabaseHas('products', $data);
+        $this->assertInstanceOf(\App\Models\Product::class, $product);
+    }
+
+    public function test_product_update(): void
+    {
+        $productId = 1;
+        $price = '160000.00';
+
+        $service = app(\App\Services\ProductService::class);
+
+        $product = $service->update($productId, ['price' => $price]);
+
+        $this->assertDatabaseHas('products', [
+            'id' => $productId,
+            'price' => $price
+        ]);
+        $this->assertInstanceOf(\App\Models\Product::class, $product);
     }
 }

@@ -55,4 +55,9 @@ class ProductController extends Controller
     {
         return $this->productService->delete($id);
     }
+
+    public function export()
+    {
+        return $this->productService->export();
+    }
 }
