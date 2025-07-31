@@ -4,7 +4,7 @@ namespace App\Repositories\Interfaces;
 
 use App\Models\Product;
 
-interface CategoryRepositoryInterface
+interface ProductRepositoryInterface
 {
 	public function all();
     public function find(int $id): ?Product;

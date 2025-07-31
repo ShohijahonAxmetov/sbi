@@ -22,7 +22,7 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->word(),
             'price' => fake()->randomFloat(2, $this->minPrice, $this->maxPrice),
-            'barcode' => fake()->regexify('^123456\d{8}$'),
+            'barcode' => fake()->regexify('^123456\d{7}$'),
             'category_id' => Category::inRandomOrder()->first()->id,
         ];
     }
