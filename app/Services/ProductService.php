@@ -47,6 +47,5 @@ class ProductService
 	{
 		ExportProducts::dispatch();
 		return;
-		// return Excel::download(new ProductsExport, 'products.xlsx');
 	}
 }

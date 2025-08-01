@@ -25,7 +25,7 @@ class ExportProducts implements ShouldQueue
     public function handle(): void
     {
         $fileName = 'products_'.time().'.xlsx';
-        $link = url('/storage/'.$fileName);
+        $link = '/storage/'.$fileName;
 
         Excel::store(new ProductsExport(), $fileName, 'public');
 

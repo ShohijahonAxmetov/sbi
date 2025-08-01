@@ -5,15 +5,15 @@ namespace Tests\Unit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ProductCreateTest extends TestCase
+class ProductTest extends TestCase
 {
-	use RefreshDatabase;
+    use RefreshDatabase;
     /**
      * A basic unit test example.
      */
     public function test_product_create(): void
     {
-    	$data = [
+        $data = [
             'name' => 'Test Product',
             'price' => '150000.00',
             'barcode' => '1234560514112',
